@@ -1,0 +1,73 @@
+class DigitalMarketingApp:
+    def __init__(self, name):
+        self.name = name
+
+    def display_info(self):
+        print(f"Welcome to {self.name}!")
+        print("This app provides information on digital marketing strategies.")
+
+    def social_media_marketing(self):
+        print("Social media marketing is a key aspect of digital marketing.")
+        print("It involves promoting products or services through social media platforms.")
+        print("Strategies include creating engaging content, running ads, and interacting with followers.")
+
+    def search_engine_optimization(self):
+        print("Search engine optimization (SEO) is crucial for digital marketing success.")
+        print("It focuses on improving website visibility in search engine results.")
+        print("This is done through keyword research, on-page optimization, and link building.")
+
+    def email_marketing(self):
+        print("Email marketing is an effective way to reach and engage with customers.")
+        print("It involves sending targeted emails to a subscriber list.")
+        print("Strategies include personalized content, automation, and analyzing campaign metrics.")
+
+# Create an instance of the DigitalMarketingApp class
+app = DigitalMarketingApp("Digital Marketing App")
+
+# Display app information
+app.display_info()
+
+# Explore social media marketing
+app.social_media_marketing()
+
+# Learn about search engine optimization
+app.search_engine_optimization()
+
+# Discover email marketing
+app.email_marketing()
+import sqlite3
+
+# انشاء قاعدة البيانات
+conn = sqlite3.connect('database.db')
+
+# انشاء جدول بسيط يحتوي على معلومات التسويق
+conn.execute('''CREATE TABLE marketing (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    campaign_name TEXT NOT NULL,
+                    start_date TEXT NOT NULL,
+                    end_date TEXT NOT NULL
+                )''')
+
+# إدخال بيانات تجريبية في الجدول
+conn.execute("INSERT INTO marketing (campaign_name, start_date, end_date) VALUES ('Campaign A', '2023-01-01', '2023-01-31')")
+conn.execute("INSERT INTO marketing (campaign_name, start_date, end_date) VALUES ('Campaign B', '2023-02-01', '2023-02-28')")
+
+# حفظ التغييرات وإغلاق الاتصال بقاعدة البيانات
+conn.commit()
+conn.close()
+import sqlite3
+
+# الاتصال بقاعدة البيانات
+conn = sqlite3.connect('database.db')
+
+# استعلام لاسترداد جميع معلومات التسويق
+cursor = conn.execute("SELECT * FROM marketing")
+for row in cursor:
+    print(f"Campaign: {row[1]}")
+    print(f"Start Date: {row[2]}")
+    print(f"End Date: {row[3]}")
+    print("")
+
+# إغلاق الاتصال بقاعدة البيانات
+conn.close()
+
